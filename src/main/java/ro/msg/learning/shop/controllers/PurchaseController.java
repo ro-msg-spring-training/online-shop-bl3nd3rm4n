@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dtos.OrderInformationDTO;
+import ro.msg.learning.shop.models.Purchase;
 import ro.msg.learning.shop.services.PurchaseService;
 
 @RestController
@@ -16,12 +17,12 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @GetMapping
-    public ResponseEntity<Object> findById(int purchaseId) {
+    public ResponseEntity<Purchase> findById(int purchaseId) {
         return new ResponseEntity<>(purchaseService.findById(purchaseId), HttpStatus.OK);
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Object> create(@RequestBody OrderInformationDTO orderInformationDTO) {
+    public ResponseEntity<Purchase> create(@RequestBody OrderInformationDTO orderInformationDTO) {
         return new ResponseEntity<>(purchaseService.create(orderInformationDTO), HttpStatus.OK);
     }
 }

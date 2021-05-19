@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,13 @@ public class Customer implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private int id;
-    @Column(name = "first_name", nullable = false)
+    @Column(nullable = false)
     private String firstName;
-    @Column(name = "last_name", nullable = false)
+    @Column(nullable = false)
     private String lastName;
-    @Column(name = "username", unique = true)
+    @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
 
