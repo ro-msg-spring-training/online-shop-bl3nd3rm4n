@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,7 +22,7 @@ public class Revenue implements BaseEntity {
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
-    private LocalDate date;
+    private LocalDateTime date;
     private BigDecimal sum;
 
 }
