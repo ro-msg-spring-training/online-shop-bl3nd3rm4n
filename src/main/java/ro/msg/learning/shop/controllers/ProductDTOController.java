@@ -13,7 +13,6 @@ import java.util.Collection;
 @CrossOrigin
 @AllArgsConstructor
 @RequestMapping("/product")
-
 public class ProductDTOController {
 
     private final ProductDTOService productDTOService;

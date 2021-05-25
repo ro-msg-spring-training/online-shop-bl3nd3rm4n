@@ -24,19 +24,23 @@ public class TestService {
 
 
     public void populate() {
-        Address address = addressRepository.save(new Address(0, "address", "city", "county", "street"));
-        Supplier supplier = supplierRepository.save(new Supplier(0, "supplier"));
+        Address address1 = addressRepository.save(new Address(1, "Romania", "Sibiu", "Sibiu", "Gorjului 4"));
+        Address address2 = addressRepository.save(new Address(2, "Romania", "Constanta", "Constanta", "Nucilor 1"));
+        Supplier supplier = supplierRepository.save(new Supplier(1, "supplier"));
         ProductCategory productCategory = productCategoryRepository.save(
-                new ProductCategory(0, "productCategory", "productCategoryDescription"));
+                new ProductCategory(1, "productCategory", "productCategoryDescription"));
         Product product1 = productRepository.save(
-                new Product(0, "product1", "", BigDecimal.valueOf(10), 1, "", productCategory, supplier));
+                new Product(1, "product1", "", BigDecimal.valueOf(10), 1, "", productCategory, supplier));
         Product product2 = productRepository.save(
-                new Product(0, "product2", "", BigDecimal.valueOf(20), 2, "", productCategory, supplier));
-        Location location = locationRepository.save(new Location(0, "location", address));
-        customerRepository.save(new Customer(0, "first", "last", "user", "pass", "email"));
+                new Product(2, "product2", "", BigDecimal.valueOf(20), 2, "", productCategory, supplier));
+        Location location1 = locationRepository.save(new Location(1, "location1", address1));
+        Location location2 = locationRepository.save(new Location(2, "location2", address2));
+        customerRepository.save(new Customer(1, "first", "last", "user", "pass", "email"));
+        customerRepository.save(new Customer(2, "tester", "test", "test", "test", "test"));
 
-        stockRepository.save(new Stock(0, location, product1, 100));
-        stockRepository.save(new Stock(0, location, product2, 200));
+        stockRepository.save(new Stock(1, location1, product1, 100));
+        stockRepository.save(new Stock(2, location2, product1, 100));
+        stockRepository.save(new Stock(3, location2, product2, 200));
     }
 
     public void deleteAll() {
@@ -50,4 +54,5 @@ public class TestService {
         productCategoryRepository.deleteAll();
         supplierRepository.deleteAll();
     }
+
 }
