@@ -6,7 +6,7 @@ import ro.msg.learning.shop.dtos.ProductDTO;
 import ro.msg.learning.shop.models.Stock;
 import ro.msg.learning.shop.repositories.ProductRepository;
 import ro.msg.learning.shop.repositories.StockRepository;
-import ro.msg.learning.shop.utils.DTOMapper;
+import ro.msg.learning.shop.utils.ProductDTOMapper;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,15 +21,15 @@ public class ProductDTOService {
     StockRepository stockRepository;
 
     public ProductDTO findById(int productId) throws NoSuchElementException {
-        return DTOMapper.map(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
+        return ProductDTOMapper.mapToProductDTO(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
     }
 
     public Collection<ProductDTO> findAll() {
-        return productRepository.findAll().stream().map(DTOMapper::map).collect(Collectors.toList());
+        return productRepository.findAll().stream().map(ProductDTOMapper::mapToProductDTO).collect(Collectors.toList());
     }
 
     public ProductDTO delete(int productId) throws NoSuchElementException {
-        ProductDTO productDTO = DTOMapper.map(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
+        ProductDTO productDTO = ProductDTOMapper.mapToProductDTO(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
         List<Stock> stocks = stockRepository.findByProductId(productId);
         for (Stock stock : stocks) {
             stock.setQuantity(0);
@@ -39,12 +39,12 @@ public class ProductDTOService {
     }
 
     public ProductDTO create(ProductDTO productDTO) {
-        return DTOMapper.map(productRepository.save(DTOMapper.map(productDTO)));
+        return ProductDTOMapper.mapToProductDTO(productRepository.save(ProductDTOMapper.mapToProduct(productDTO)));
     }
 
     public ProductDTO update(int productId, ProductDTO productDTO) throws NoSuchElementException {
-        DTOMapper.map(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
+        ProductDTOMapper.mapToProductDTO(productRepository.findById(productId).orElseThrow(NoSuchElementException::new));
         productDTO.setId(productId);
-        return DTOMapper.map(productRepository.save(DTOMapper.map(productDTO)));
+        return ProductDTOMapper.mapToProductDTO(productRepository.save(ProductDTOMapper.mapToProduct(productDTO)));
     }
 }

@@ -12,6 +12,10 @@ public interface StockRepository extends JpaRepository<Stock, Integer>, JpaSpeci
 
     List<Stock> findByProductIdAndQuantityGreaterThanEqual(int productId, int quantity);
 
+    List<Stock> findByProductIdAndLocationId(int productId, int locationId);
+
+    List<Stock> findByLocationId(int locationId);
+
     List<Stock> findByProductId(int productId);
 
     Stock findFirstByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(int productId, int quantity);
