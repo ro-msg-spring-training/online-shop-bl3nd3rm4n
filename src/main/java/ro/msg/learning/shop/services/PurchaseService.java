@@ -1,6 +1,5 @@
 package ro.msg.learning.shop.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.dtos.OrderInformationDTO;
@@ -34,7 +33,7 @@ public class PurchaseService {
     }
 
 
-    public Purchase create(OrderInformationDTO orderInformationDTO) throws NoSuchElementException, JsonProcessingException {
+    public Purchase create(OrderInformationDTO orderInformationDTO) throws NoSuchElementException {
         Collection<Stock> stocksForOrder = locationSelectionStrategy.fulfillOrder(orderInformationDTO, stockRepository);
 
         List<Stock> updatedStocks = subtractStocks(stocksForOrder);

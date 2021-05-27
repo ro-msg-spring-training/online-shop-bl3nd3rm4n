@@ -18,10 +18,6 @@ public class StockService {
         return stockRepository.findById(stockId).orElseThrow(NoSuchElementException::new);
     }
 
-    public Collection<Stock> findByProductIdAndLocationId(int stockId, int locationId) {
-        return stockRepository.findByProductIdAndLocationId(stockId, locationId);
-    }
-
     public Collection<Stock> findAll() {
         return stockRepository.findAll();
     }

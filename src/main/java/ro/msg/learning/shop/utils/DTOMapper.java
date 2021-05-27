@@ -4,8 +4,8 @@ import ro.msg.learning.shop.dtos.ProductDTO;
 import ro.msg.learning.shop.models.Product;
 import ro.msg.learning.shop.models.ProductCategory;
 
-public class ProductDTOMapper {
-    public static ProductDTO mapToProductDTO(Product product) {
+public class DTOMapper {
+    public static ProductDTO map(Product product) {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
@@ -20,7 +20,7 @@ public class ProductDTOMapper {
         return productDTO;
     }
 
-    public static Product mapToProduct(ProductDTO productDTO) {
+    public static Product map(ProductDTO productDTO) {
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
